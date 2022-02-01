@@ -129,7 +129,7 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="get:\joke:joke-api-config">
+    <flow name="get:\joke:joke-api-config" doc:id="a52a4bbf-186c-4e46-bb5e-d5476d3a0f82">
 		<http:request method="GET" doc:name="Joke API" doc:id="b3c066d9-14a0-4e0c-8f0a-b272731aaaaf" config-ref="HTTP_Request_configuration" path="/Any?safe-mode"/>
 		<ee:transform doc:name="Transform Message" doc:id="35ae003f-037f-4acc-aa9d-41c8c0e31a21" >
 			<ee:message >
