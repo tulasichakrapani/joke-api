@@ -1,0 +1,17 @@
+#%RAML 1.0 SecurityScheme
+type: OAuth 2.0
+description: OAuth2 security policy for authenticating API requests.
+describedBy:
+  headers:
+    Authorization:
+      description: Used for sending a valid OAuth2 Access Token.
+      type: string
+  responses:
+    401:
+      description: Bad or expired token.
+    403:
+      description: Bad OAuth request.
+settings:
+  authorizationUri: https://dev-18676529.okta.com/oauth2/aus3pdrgu7VY2t1KU5d7/v1/authorize
+  accessTokenUri: https://dev-18676529.okta.com/oauth2/aus3pdrgu7VY2t1KU5d7/v1/token
+  authorizationGrants : [authorization_code]

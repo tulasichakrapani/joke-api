@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: joke-api
+
+securitySchemes:
+  oAuth2: !include exchange_modules/8d28c3ac-3ab5-4984-8830-e1a0cd49febe/okta-security-scheme/1.0.0/okta-security-scheme.raml
+
+securedBy:
+  - oAuth2
+
+/joke:
+  get:
+    description: Jokes
+    responses:
+      200:
+        body:
+          application/json: 
+            example: !include example.json
