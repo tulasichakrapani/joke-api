@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -35,8 +37,7 @@
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.4.0</muleVersion>
 						<muleVersion>${mule.version}</muleVersion>
-						<!-- 						<username>${anypoint.username}</username>
-						<password>${anypoint.password}</password> -->
+						<!-- <username>${anypoint.username}</username> <password>${anypoint.password}</password> -->
 						<environment>${environment}</environment>
 						<workerType>${cloudhub.workerType}</workerType>
 						<workers>${cloudhub.workers}</workers>
@@ -69,13 +70,17 @@
 				</executions>
 				<configuration>
 					<coverage>
-					<ignoreFlows>
+						<ignoreFlows>
 							<ignoreFlow>joke-api-main</ignoreFlow>
 							<ignoreFlow>joke-api-console</ignoreFlow>
 						</ignoreFlows>
+						<ignoreFiles>
+							<ignoreFile>joke-api-apikit-test.xml</ignoreFile>
+						</ignoreFiles>
 						<runCoverage>true</runCoverage>
 						<formats>
 							<format>html</format>
+							<format>console</format>
 						</formats>
 					</coverage>
 				</configuration>
