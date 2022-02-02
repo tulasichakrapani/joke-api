@@ -13,41 +13,10 @@ pipeline {
   stages {
     stage('Build and Test') {
       steps {
-        script {
-          echo "Starting Build and Test..."
-          configFileProvider([configFile(fileId: 'UUID', variable: 'MAVEN_SETTINGS_XML')]) {
-            sh "mvn -s $MAVEN_SETTINGS_XML -Dmaven.test.failure.ignore clean verify"
-          }
-          echo "Build and Test: ${currentBuild.currentResult}"
-        }
-      }
-      post {
-        success {
-          echo "...Build and Test Succeeded"
-        }
-        unsuccessful {
-          echo "...Build and Test Failed"
-        }
+		bat 'mvn clean install'
       }
     }
 
-    stage('Deploy Snapshot to Artifactory') {
-      steps {
-        script {
-          echo "Starting Deploy Snapshot Artifact..."
-          configFileProvider([configFile(fileId: 'UUID', variable: 'MAVEN_SETTINGS_XML')]) {}
-          echo "Artifact Deployed: ${currentBuild.currentResult}"
-        }
-      }
-      post {
-        success {
-          echo "...Deploy Artifact Succeeded for ${env.BUILD_VERSION}: ${currentBuild.currentResult}"
-        }
-        unsuccessful {
-          echo "...Deploy Artifact Failed for ${env.BUILD_VERSION}: ${currentBuild.currentResult}"
-        }
-      }
-    }
 
     stage('Deploy to Sandbox environment') {
       steps {
@@ -81,8 +50,7 @@ pipeline {
 
           configFileProvider([configFile(fileId: 'UUID', variable: 'MAVEN_SETTINGS_XML')]) {
             // Run the maven build
-            sh ""
-            " mvn clean package deploy -DmuleDeploy -U --batch-mode -s $MAVEN_SETTINGS_XML \
+            sh " mvn clean package deploy -DmuleDeploy -U --batch-mode -s $MAVEN_SETTINGS_XML \
                         -Danypoint.platform.config.analytics.agent.enabled=true \
                         -Dapp.runtime=${anypointMuleVersion}  \
                         -DauthToken=${env.ACCESS_TOKEN} \
@@ -100,16 +68,7 @@ pipeline {
                         -DreqFlowCoverage=${reqFlowCoverage} \
                         -DfailBuild=${failBuild} \
                         -Dcloudhub.workers=${cloudhubWorkers} "
-            ""
           }
-        }
-      }
-      post {
-        success {
-          echo "...Deploy to Sandbox Succeeded for ${env.BUILD_VERSION}: ${currentBuild.currentResult}"
-        }
-        unsuccessful {
-          echo "...Deploy to Sandbox Failed for ${env.BUILD_VERSION}: ${currentBuild.currentResult}"
         }
       }
     }
