@@ -14,10 +14,6 @@ pipeline {
     stage('Build and Test') {
       steps {
         script {
-          releaseVersion = readMavenPom().getVersion()
-          if (!releaseVersion.endsWith('-SNAPSHOT')) {
-            throw new Exception("Version does not correspond to SNAPSHOT, please add the -SNAPSHOT suffix in the version")
-          }
           echo "Starting Build and Test..."
           configFileProvider([configFile(fileId: 'UUID', variable: 'MAVEN_SETTINGS_XML')]) {
             sh "mvn -s $MAVEN_SETTINGS_XML -Dmaven.test.failure.ignore clean verify"
@@ -58,7 +54,7 @@ pipeline {
         script {
           echo "Starting Sandbox environment"
 
-          applicationName = 'sandbox-' + readMavenPom().getArtifactId()
+          applicationName = 'sandbox-joke-api'
           echo "applicationName=${applicationName}"
 
           props = readProperties(file: 'deploy.properties') //retrieves the properties from the deploy.properties file stored in the repo
