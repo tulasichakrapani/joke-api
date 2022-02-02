@@ -36,18 +36,17 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.4.0</muleVersion>
-						<muleVersion>${mule.version}</muleVersion>
-						<!-- <username>${anypoint.username}</username> <password>${anypoint.password}</password> -->
-						<environment>${environment}</environment>
-						<workerType>${cloudhub.workerType}</workerType>
-						<workers>${cloudhub.workers}</workers>
-						<applicationName>${cloudhub.application.name}</applicationName>
-						<businessGroup>${business.group.id}</businessGroup>
+						<username>guest_account3</username>
+						<password>B0bby@123</password>
+						<environment>Sandbox</environment>
+						<workerType>Micro</workerType>
+						<workers>1</workers>
+						<applicationName>sandbox-joke-api</applicationName>
+						<!-- <businessGroup>${business.group.id}</businessGroup> -->
 						<objectStoreV2>true</objectStoreV2>
 						<properties>
-							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
-							<mule.env>${environment}</mule.env>
+							<anypoint.platform.client_id>9d9ffc6bc5a54998b6be089c5d898ddb</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>85B36fA8BBf7483689A1311C95cFC2ad</anypoint.platform.client_secret>
 							<anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
 						</properties>
 					</cloudHubDeployment>
